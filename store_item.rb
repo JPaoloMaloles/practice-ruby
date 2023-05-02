@@ -6,5 +6,5 @@
 balloonstore = [
   { color: "Red", price: "1.99", texture: "bumpy" },
   { color: "Blue", price: "2.99", texture: "sticky" },
-  { color: "Green", price: "3.99", texture: "smooth" },
+  { :color => "Green", :price => "3.99", :texture => "smooth" },
 ]
