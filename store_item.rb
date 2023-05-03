@@ -89,3 +89,28 @@ puts
 puts "The #{balloon1.texture}, #{balloon1.color} balloon costs #{balloon1.price}"
 puts "The #{balloon2.texture}, #{balloon2.color} balloon costs #{balloon2.price}"
 puts "The #{balloon3.texture}, #{balloon3.color} balloon costs #{balloon3.price}"
+
+# Exercise: Rewrite your store items using a class with a single options hash in the initialize method.
+
+class Balloon
+  attr_reader :color, :price, :texture
+  attr_writer :color, :price, :texture
+
+  def initialize(input)
+    @color = input[:color]
+    @price = input[:price]
+    @texture = input[:texture]
+  end
+end
+
+balloon1 = Balloon.new(color: "red", price: 1.99, texture: "bumpy")
+balloon2 = Balloon.new(color: "blue", price: 2.99, texture: "sticky")
+balloon3 = Balloon.new(color: "green", price: 3.99, texture: "smooth")
+
+puts
+puts "------------------------------"
+puts "this is the Class version where the initialize method accepts a single hash"
+puts
+puts "The #{balloon1.texture}, #{balloon1.color} balloon costs #{balloon1.price}"
+puts "The #{balloon2.texture}, #{balloon2.color} balloon costs #{balloon2.price}"
+puts "The #{balloon3.texture}, #{balloon3.color} balloon costs #{balloon3.price}"
