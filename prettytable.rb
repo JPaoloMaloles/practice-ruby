@@ -216,6 +216,12 @@ while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "
 
     puts "Set Active (#{manager.employees[inputemployeeid - 1].active}):"
     inputactive = gets.chomp().to_s
+    while inputactive != "true" && inputactive != "false"
+      puts
+      puts "true or false only please"
+      puts "Active (true or false):"
+      inputactive = gets.chomp.to_s.downcase
+    end
 
     manager.employees[inputemployeeid - 1].active = inputactive
 
