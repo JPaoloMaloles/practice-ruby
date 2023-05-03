@@ -87,10 +87,39 @@ end
 
 userinput = "~"
 while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "d" || userinput != "q"
+  #Creates an Array of the Employees
+  puts "---------------------------------------------------------------------"
+  employeesarray = []
+  index = 0
+  while index < manager.employees.length
+    temparray = [(index + 1).to_s]
+    temparray << manager.employees[index].first_name
+    temparray << manager.employees[index].last_name
+    temparray << manager.employees[index].salary
+    temparray << manager.employees[index].active
+    employeesarray << temparray
+    index += 1
+  end
+
+  #Creates the table
+  table = TTY::Table.new(
+    ["ID", "firt_name", "last_name", "salary", "active"], employeesarray
+  )
+
+  #Writes the Title and the Table into the file
+  puts
+  File.write("savedtable", "EMPLOYEES (#{table.length - 1} total)\n")
+  File.write("savedtable", "#{table.render(:ascii)}", mode: "a")
+  
+  #Prints the file line-byline
+  File.foreach("savedtable") {
+    |line| puts line
+  }
+  puts
+  
   #prompts the user
   puts
   puts
-  puts "---------------------------------------------------------------------"
   puts "[C]reate, [R]ead, [U]pdate, [D]elete, [Q]uit"
   userinput = gets.chomp().to_s.downcase
   
@@ -137,33 +166,32 @@ while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "
     #adds that employee to the employees instantial variable of the manager instance of the Manage class
     manager.employees << newemployee
   elsif userinput == "r" # ---------------------------------------------------------------------------------------------- "R"
-    #Creates an Array of the Employees
-    employeesarray = []
-    index = 0
-    while index < manager.employees.length
-      temparray = [(index + 1).to_s]
-      temparray << manager.employees[index].first_name
-      temparray << manager.employees[index].last_name
-      temparray << manager.employees[index].salary
-      temparray << manager.employees[index].active
-      employeesarray << temparray
-      index += 1
+    #Prints out the employee ID
+    puts "Employee ID"
+    inputemployeeid = gets.chomp().to_i
+
+    #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
+    while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      if inputemployeeid > manager.employees.length
+        puts
+        puts "That index is outside the number of the employees (#{manager.employees.length}) !"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      elsif inputemployeeid < 0
+        puts
+        puts "No negative numbers please"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      end
+      inputemployeeid = gets.chomp().to_i
+      puts
     end
-
-    #Creates the table
-    table = TTY::Table.new(
-      ["ID", "firt_name", "last_name", "salary", "active"], employeesarray
-    )
-
-    #Writes the Title and the Table into the file
-    puts
-    File.write("savedtable", "EMPLOYEES (#{table.length - 1} total)\n")
-    File.write("savedtable", "#{table.render(:ascii)}", mode: "a")
     
-    #Prints the file line-byline
-    File.foreach("savedtable") {
-      |line| puts line
-    }
+    puts
+    puts
+    puts "Here is Employee #{inputemployeeid}'s info:"
+    puts "First Name: #{manager.employees[inputemployeeid - 1].first_name}"
+    puts "Lastt Name: #{manager.employees[inputemployeeid - 1].last_name}"
+    puts "Salary: #{manager.employees[inputemployeeid - 1].salary}"
+    puts "Active: #{manager.employees[inputemployeeid - 1].active}"
     puts
   elsif userinput == "u" # ---------------------------------------------------------------------------------------------- "U"
     # Updates the Active status of an employee
