@@ -86,37 +86,57 @@ end
 
 
 userinput = "~"
-while userinput != ""
+while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "d" || userinput != "q"
   #prompts the user
   puts
   puts
+  puts "---------------------------------------------------------------------"
   puts "[C]reate, [R]ead, [U]pdate, [D]elete, [Q]uit"
   userinput = gets.chomp().to_s.downcase
   
-  if userinput == "c"
+  if userinput == "c" # ---------------------------------------------------------------------------------------------- "C"
     # Adds a new employee
     puts
     puts "First Name:"
     inputfirstname = gets.chomp.to_s.downcase
+    #split here to capitalize
+    inputfirstnamearray = inputfirstname.chars
+    inputfirstnamearray[0] = inputfirstnamearray[0].upcase
+    inputfirstname = inputfirstnamearray.join
 
     puts
     puts "Last Name:"
     inputlastname = gets.chomp.to_s.downcase
+    inputlastnamearray = inputlastname.chars
+    inputlastnamearray[0] = inputlastnamearray[0].upcase
+    inputlastname = inputlastnamearray.join
 
     puts
     puts "Salary:"
-    inputsalary = gets.chomp.to_i
+    inputsalary = gets.chomp
+    while !inputsalary.scan(/\D/).empty?
+      puts
+      puts "Numbers only please"
+      puts "Salary:"
+      inputsalary = gets.chomp
+    end
 
     puts
     puts "Active (true or false):"
     inputactive = gets.chomp.to_s.downcase
+    while inputactive != "true" && inputactive != "false"
+      puts
+      puts "true or false only please"
+      puts "Active (true or false):"
+      inputactive = gets.chomp.to_s.downcase
+    end
     
     #adds the inputted attributes into an instance of an employee class
     newemployee = Employee.new(first_name: "#{inputfirstname}", last_name: "#{inputlastname}", salary: inputsalary, active: inputactive)
     
     #adds that employee to the employees instantial variable of the manager instance of the Manage class
     manager.employees << newemployee
-  elsif userinput == "r"
+  elsif userinput == "r" # ---------------------------------------------------------------------------------------------- "R"
     #Creates an Array of the Employees
     employeesarray = []
     index = 0
@@ -137,7 +157,6 @@ while userinput != ""
 
     #Writes the Title and the Table into the file
     puts
-    puts "this is what is printed from reading the file:"
     File.write("savedtable", "EMPLOYEES (#{table.length - 1} total)\n")
     File.write("savedtable", "#{table.render(:ascii)}", mode: "a")
     
@@ -145,23 +164,59 @@ while userinput != ""
     File.foreach("savedtable") {
       |line| puts line
     }
-  elsif userinput == "u"
+    puts
+  elsif userinput == "u" # ---------------------------------------------------------------------------------------------- "U"
     # Updates the Active status of an employee
     puts "Employee ID"
     inputemployeeid = gets.chomp().to_i
-  elsif userinput == "d"
+
+    #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
+    while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      if inputemployeeid > manager.employees.length
+        puts
+        puts "That index is outside the number of the employees (#{manager.employees.length}) !"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      elsif inputemployeeid < 0
+        puts
+        puts "No negative numbers please"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      end
+      inputemployeeid = gets.chomp().to_i
+      puts
+    end
+
+
+    puts "Set Active (#{manager.employees[inputemployeeid - 1].active}):"
+    inputactive = gets.chomp().to_s
+
+    manager.employees[inputemployeeid - 1].active = inputactive
+
+    puts
+    puts "Changed it"
+  elsif userinput == "d" # ---------------------------------------------------------------------------------------------- "D"
     # Deletes an employee from the array
     puts "Employee ID"
     inputemployeeid = gets.chomp().to_i
-    
+
+    #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
+    while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      if inputemployeeid > manager.employees.length
+        puts
+        puts "That index is outside the number of the employees (#{manager.employees.length}) !"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      elsif inputemployeeid < 0
+        puts
+        puts "No negative numbers please"
+        puts "INPUT EMPLOYEE ID AGAIN"
+      end
+      inputemployeeid = gets.chomp().to_i
+      puts
+    end
+
     #This is a very roundabout way of doing it
     manager.employees.delete_at(inputemployeeid - 1)
-  elsif userinput == "q"
+  elsif userinput == "q" # ---------------------------------------------------------------------------------------------- "Q"
     puts "Goodbye!"
     break
   end
 end
-
-puts "If I didnt say goodbye you didnt put in anything"
-
-
