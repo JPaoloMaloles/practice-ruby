@@ -4,6 +4,9 @@
 # • To test it, create a bicycle and car instance from your newly modified classes (you can create them at the bottom of your file). First, have them accelerate. Then, make sure a bike can “Ring ring!” and a car "Beeeeeeep!"
 
 class Transportation
+  attr_reader :speed, :direction
+  attr_writer :speed, :direction
+
   def initialize(input)
     @speed = 0
     @direction = "north"
