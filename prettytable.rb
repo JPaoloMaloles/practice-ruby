@@ -53,15 +53,23 @@ end
 
 manager = Manager.new(first_name: "Saron", last_name: "Yitbarek", salary: 100000, active: true, employees: [employee1, employee2])
 
-
-puts table = TTY::Table.new(
+# NEED TO MAKE IT CLOSER TO THE GIF (ADD LINES)
+table = TTY::Table.new(
   ["ID", "firt_name", "last_name", "salary", "active"], [
     ["1", employee1.first_name, employee1.last_name, employee1.salary, employee1.active], 
     ["2", employee2.first_name, employee2.last_name, employee1.salary, employee1.active]
-]
+  ]
 )
+puts
+puts "EMPLOYEES (#{table.length - 1} total)"
 puts table.render(:ascii)
 
-#File.open("savedtable")
-File.write("savedtable", "#{table.render(:ascii)}")
-#File.close("savedtable")
+puts
+puts "this is what is printed from reading the file:"
+File.write("savedtable", "EMPLOYEES (#{table.length - 1} total)\n")
+File.write("savedtable", "#{table.render(:ascii)}", mode: "a")
+# PUT CODE HERE TO READ THE FILE FROM HERE
+File.foreach("savedtable") {
+  |line| puts line
+}
+# Put in code to handle inputs
