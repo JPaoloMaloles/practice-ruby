@@ -1,8 +1,6 @@
-EMPLOYEES (3 total)
+EMPLOYEES (1 total)
 +--+---------+---------+------+------+
 |ID|firt_name|last_name|salary|active|
 +--+---------+---------+------+------+
 |1 |Majora   |Carter   |80000 |true  |
-|2 |Danilo   |Campos   |70000 |true  |
-|3 |Paolo    |Maloles  |10000 |true  |
 +--+---------+---------+------+------+

@@ -168,20 +168,30 @@ while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "
   elsif userinput == "r" # ---------------------------------------------------------------------------------------------- "R"
     #Prints out the employee ID
     puts "Employee ID"
-    inputemployeeid = gets.chomp().to_i
+    inputemployeeid = gets.chomp()
+    while inputemployeeid == ""
+      puts "INPUT EMPLOYEE ID AGAIN"
+      puts "please do not leave blank"
+      inputemployeeid = gets.chomp()
+    end
+    inputemployeeid = inputemployeeid.to_i
 
     #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
     while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      puts
+      puts "INPUT EMPLOYEE ID AGAIN"
       if inputemployeeid > manager.employees.length
-        puts
         puts "That index is outside the number of the employees (#{manager.employees.length}) !"
-        puts "INPUT EMPLOYEE ID AGAIN"
       elsif inputemployeeid < 0
-        puts
         puts "No negative numbers please"
-        puts "INPUT EMPLOYEE ID AGAIN"
       end
-      inputemployeeid = gets.chomp().to_i
+      inputemployeeid = gets.chomp()
+      while inputemployeeid == ""
+        puts "INPUT EMPLOYEE ID AGAIN"
+        puts "please do not leave blank"
+        inputemployeeid = gets.chomp()
+      end
+      inputemployeeid = inputemployeeid.to_i
       puts
     end
     
@@ -196,20 +206,30 @@ while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "
   elsif userinput == "u" # ---------------------------------------------------------------------------------------------- "U"
     # Updates the Active status of an employee
     puts "Employee ID"
-    inputemployeeid = gets.chomp().to_i
+    inputemployeeid = gets.chomp()
+    while inputemployeeid == ""
+      puts "INPUT EMPLOYEE ID AGAIN"
+      puts "please do not leave blank"
+      inputemployeeid = gets.chomp()
+    end
+    inputemployeeid = inputemployeeid.to_i
 
     #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
     while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      puts
+      puts "INPUT EMPLOYEE ID AGAIN"
       if inputemployeeid > manager.employees.length
-        puts
         puts "That index is outside the number of the employees (#{manager.employees.length}) !"
-        puts "INPUT EMPLOYEE ID AGAIN"
       elsif inputemployeeid < 0
-        puts
         puts "No negative numbers please"
-        puts "INPUT EMPLOYEE ID AGAIN"
       end
-      inputemployeeid = gets.chomp().to_i
+      inputemployeeid = gets.chomp()
+      while inputemployeeid == ""
+        puts "INPUT EMPLOYEE ID AGAIN"
+        puts "please do not leave blank"
+        inputemployeeid = gets.chomp()
+      end
+      inputemployeeid = inputemployeeid.to_i
       puts
     end
 
@@ -230,20 +250,30 @@ while userinput != "c" || userinput != "r" || userinput != "u" || userinput != "
   elsif userinput == "d" # ---------------------------------------------------------------------------------------------- "D"
     # Deletes an employee from the array
     puts "Employee ID"
-    inputemployeeid = gets.chomp().to_i
+    inputemployeeid = gets.chomp()
+    while inputemployeeid == ""
+      puts "INPUT EMPLOYEE ID AGAIN"
+      puts "please do not leave blank"
+      inputemployeeid = gets.chomp()
+    end
+    inputemployeeid = inputemployeeid.to_i
 
     #Checks to make sure the ID doesnt correlate to a negative index or an index greater than the # of employees
     while inputemployeeid < 0 || inputemployeeid > manager.employees.length
+      puts
+      puts "INPUT EMPLOYEE ID AGAIN"
       if inputemployeeid > manager.employees.length
-        puts
         puts "That index is outside the number of the employees (#{manager.employees.length}) !"
-        puts "INPUT EMPLOYEE ID AGAIN"
       elsif inputemployeeid < 0
-        puts
         puts "No negative numbers please"
-        puts "INPUT EMPLOYEE ID AGAIN"
       end
-      inputemployeeid = gets.chomp().to_i
+      inputemployeeid = gets.chomp()
+      while inputemployeeid == ""
+        puts "INPUT EMPLOYEE ID AGAIN"
+        puts "please do not leave blank"
+        inputemployeeid = gets.chomp()
+      end
+      inputemployeeid = inputemployeeid.to_i
       puts
     end
 
