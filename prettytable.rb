@@ -27,6 +27,8 @@ employee1.print_info
 employee2.print_info
 
 class Manager < Employee
+  attr_reader :employees
+  attr_reader :employees
   def initialize(input_options)
     super
     @employees = input_options[:employees]
@@ -54,11 +56,32 @@ end
 manager = Manager.new(first_name: "Saron", last_name: "Yitbarek", salary: 100000, active: true, employees: [employee1, employee2])
 
 # NEED TO MAKE IT CLOSER TO THE GIF (ADD LINES)
+employeesarray = []
+index = 0
+while index < manager.employees.length
+  temparray = [(index + 1).to_s]
+  temparray << manager.employees[index].first_name
+  temparray << manager.employees[index].last_name
+  temparray << manager.employees[index].salary
+  temparray << manager.employees[index].active
+  employeesarray << temparray
+  index += 1
+end
+#right now it is adding the number follow by the entire class. Instead, I need the instance variables of the class]
+
+
+# table = TTY::Table.new(
+#   ["ID", "firt_name", "last_name", "salary", "active"], [
+#     ["1", employee1.first_name, employee1.last_name, employee1.salary, employee1.active], 
+#     ["2", employee2.first_name, employee2.last_name, employee1.salary, employee1.active]
+#   ]
+# )
+
+puts "CAT"
+p employeesarray
+puts "CAT"
 table = TTY::Table.new(
-  ["ID", "firt_name", "last_name", "salary", "active"], [
-    ["1", employee1.first_name, employee1.last_name, employee1.salary, employee1.active], 
-    ["2", employee2.first_name, employee2.last_name, employee1.salary, employee1.active]
-  ]
+  ["ID", "firt_name", "last_name", "salary", "active"], employeesarray
 )
 puts
 puts "EMPLOYEES (#{table.length - 1} total)"
@@ -73,3 +96,15 @@ File.foreach("savedtable") {
   |line| puts line
 }
 # Put in code to handle inputs
+#[C]reate, [R]ead, [U]pdate, [D]elete, [Q]uit
+
+puts "[C]reate, [R]ead, [U]pdate, [D]elete, [Q]uit"
+userinput = gets.chomp().to_s.downcase
+
+if userinput == "c"
+
+elsif userinput == "r"
+elsif userinput == "u"
+elsif userinput == "q"
+  puts "Goodbye!"
+end
