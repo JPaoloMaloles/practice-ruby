@@ -63,3 +63,29 @@ puts
 puts "The #{balloon1.texture}, #{balloon1.color} balloon costs #{balloon1.price}"
 puts "The #{balloon2.texture}, #{balloon2.color} balloon costs #{balloon2.price}"
 puts "The #{balloon3.texture}, #{balloon3.color} balloon costs #{balloon3.price}"
+
+# Exercise: Replace your “reader” and “writer” methods using the attr_reader and attr_writer shortcuts!
+# Bonus: Read more about how attr_reader works its magic (advanced stuff here)
+
+class Balloon
+  attr_reader :color, :price, :texture
+  attr_writer :color, :price, :texture
+
+  def initialize(color, price, texture)
+    @color = color
+    @price = price
+    @texture = texture
+  end
+end
+
+balloon1 = Balloon.new("red", 1.99, "bumpy")
+balloon2 = Balloon.new("blue", 2.99, "sticky")
+balloon3 = Balloon.new("green", 3.99, "smooth")
+
+puts
+puts "------------------------------"
+puts "this is the Class version using attr_reader & attr_writer"
+puts
+puts "The #{balloon1.texture}, #{balloon1.color} balloon costs #{balloon1.price}"
+puts "The #{balloon2.texture}, #{balloon2.color} balloon costs #{balloon2.price}"
+puts "The #{balloon3.texture}, #{balloon3.color} balloon costs #{balloon3.price}"
