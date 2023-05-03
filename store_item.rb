@@ -114,3 +114,24 @@ puts
 puts "The #{balloon1.texture}, #{balloon1.color} balloon costs #{balloon1.price}"
 puts "The #{balloon2.texture}, #{balloon2.color} balloon costs #{balloon2.price}"
 puts "The #{balloon3.texture}, #{balloon3.color} balloon costs #{balloon3.price}"
+
+# Open the store_item.rb file you created from the previous lesson.
+
+# Some of your store items are food, which have a shelf life. Create a class called Food which inherits from your original class and has an additional property of shelf_life.
+
+class Food < Balloon
+  attr_reader :shelf_life
+  attr_writer :shelf_life
+
+  def initialize(input)
+    super
+    @shelf_life = input[:shelf_life]
+  end
+end
+
+puts
+puts "------------------------------"
+puts "this is the new Food class which inherits from Balloon"
+puts
+apple = Food.new(shelf_life: "9 years")
+puts apple.shelf_life
