@@ -93,8 +93,8 @@ while userinput != ""
   puts "[C]reate, [R]ead, [U]pdate, [D]elete, [Q]uit"
   userinput = gets.chomp().to_s.downcase
   
-  # Adds a new employee
   if userinput == "c"
+    # Adds a new employee
     puts
     puts "First Name:"
     inputfirstname = gets.chomp.to_s.downcase
@@ -110,12 +110,14 @@ while userinput != ""
     puts
     puts "Active (true or false):"
     inputactive = gets.chomp.to_s.downcase
+    
     #adds the inputted attributes into an instance of an employee class
     newemployee = Employee.new(first_name: "#{inputfirstname}", last_name: "#{inputlastname}", salary: inputsalary, active: inputactive)
+    
     #adds that employee to the employees instantial variable of the manager instance of the Manage class
     manager.employees << newemployee
-    
-    #adds that employee onto the array of employees
+  elsif userinput == "r"
+    #Creates an Array of the Employees
     employeesarray = []
     index = 0
     while index < manager.employees.length
@@ -127,27 +129,19 @@ while userinput != ""
       employeesarray << temparray
       index += 1
     end
-  elsif userinput == "r"
-    #Creates an Array of the Employees
-    # employeesarray = []
-    # index = 0
-    # while index < manager.employees.length
-    #   temparray = [(index + 1).to_s]
-    #   temparray << manager.employees[index].first_name
-    #   temparray << manager.employees[index].last_name
-    #   temparray << manager.employees[index].salary
-    #   temparray << manager.employees[index].active
-    #   employeesarray << temparray
-    #   index += 1
-    # end
+
+    #Creates the table
     table = TTY::Table.new(
       ["ID", "firt_name", "last_name", "salary", "active"], employeesarray
     )
+
+    #Writes the Title and the Table into the file
     puts
     puts "this is what is printed from reading the file:"
     File.write("savedtable", "EMPLOYEES (#{table.length - 1} total)\n")
     File.write("savedtable", "#{table.render(:ascii)}", mode: "a")
-    # PUT CODE HERE TO READ THE FILE FROM HERE
+    
+    #Prints the file line-byline
     File.foreach("savedtable") {
       |line| puts line
     }
@@ -161,23 +155,7 @@ while userinput != ""
     inputemployeeid = gets.chomp().to_i
     
     #This is a very roundabout way of doing it
-    employeesarray = []
-    index = 0
-    while index < manager.employees.length 
-      if index != inputemployeeid - 1
-        temparray = [(index + 1).to_s]
-        temparray << manager.employees[index].first_name
-        temparray << manager.employees[index].last_name
-        temparray << manager.employees[index].salary
-        temparray << manager.employees[index].active
-        employeesarray << temparray
-      end
-      index += 1
-    end
-
-    table = TTY::Table.new(
-      ["ID", "firt_name", "last_name", "salary", "active"], employeesarray
-    )
+    manager.employees.delete_at(inputemployeeid - 1)
   elsif userinput == "q"
     puts "Goodbye!"
     break
