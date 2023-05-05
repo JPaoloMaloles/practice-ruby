@@ -3,6 +3,7 @@
 #C.2 - Represent 3 items using hashes. Each hash should have the same keys with different values.
 
 #C.3 - Be sure to use symbols for the keys. Try creating hashes using both types of hash symbol syntaxes. (Ruby syntax {:a => 123} vs. “JavaScript” syntax {a: 123}).
+
 balloonstore = [
   { color: "red", price: "1.99", texture: "bumpy" },
   { color: "blue", price: "2.99", texture: "sticky" },
@@ -135,3 +136,8 @@ puts "this is the new Food class which inherits from Balloon"
 puts
 apple = Food.new(shelf_life: "9 years")
 puts apple.shelf_life
+
+# Open the store_item.rb file you created from the previous lesson.
+# Create a new module in your store item.
+# Create separate files for each of your classes and modules.
+# Create a separate main.rb file to demonstrate how each class and module work.
