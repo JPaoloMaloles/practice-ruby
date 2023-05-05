@@ -21,8 +21,10 @@ end
 puts
 #puts "Definition: #{definitiontext}"
 puts "Definitions:"
+index = 0
 definition_list.each do |definition|
-  puts "----#{definition}"
+  puts "#{index + 1}. #{definition}"
+  index += 1
 end
 puts
 puts "-----------------------------------------------------------------------------------------------------------------------------------"
@@ -43,8 +45,10 @@ end
 puts "Here is an example of '#{word}' being used in a sentence:"
 
 #p topexample
+index = 0
 examples_list.each do |example|
-  puts "----#{example}"
+  puts "#{index + 1}. #{example}"
+  index += 1
 end
 puts
 puts "-----------------------------------------------------------------------------------------------------------------------------------"
@@ -61,6 +65,8 @@ end
 
 #puts "The pronunciation is: #{pronunciationtext}"
 puts "Here are pronunciations of '#{word}':"
+index = 0
 pronunciations_list.each do |pronunciation|
-  puts "----#{pronunciation}"
+  puts "#{index + 1}. #{pronunciation}"
+  index += 1
 end
